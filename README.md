@@ -17,14 +17,10 @@ SUUMOでは囲んだ範囲の物件のみを表示するものがあるが、
 会社から○km圏内の賃貸情報を取得する
 
 ## 手順
-1. SUUMOから賃貸情報をスクレイピングで取得 scraping.py
-2. Google Maps Geocoding APIで住所から緯度経度に変換 address2latlon.py
-3. 会社とそれぞれの住宅との距離を計算 calc_distance.py
-4. ○km圏内の賃貸情報をMAP上に表示する map.html(現在作成中)
-
-### 1.SUUMOから賃貸情報をスクレイピングで取得 scraping.py
-### 2.Google Maps Geocoding APIで住所から緯度経度に変換 address2latlon.py
-### 3.会社とそれぞれの住宅との距離を計算 calc_distance.py
+説明と注意事項
+### 1.SUUMOから賃貸情報をスクレイピングで取得 [scraping.py](https://github.com/kaiman2110/Kinju_search/blob/main/src/scraping.py)
+### 2.Google Maps Geocoding APIで住所から緯度経度に変換 [address2latlon.py](https://github.com/kaiman2110/Kinju_search/blob/main/src/address2latlon.py)
+### 3.会社とそれぞれの住宅との距離を計算 [calc_distance.py](https://github.com/kaiman2110/Kinju_search/blob/main/src/calc_distance.py)
 ### 4.○km圏内の賃貸情報をMAP上に表示する map.html(現在作成中)
 
 ## 参考文献
