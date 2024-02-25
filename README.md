@@ -27,10 +27,33 @@ urlは、任意の[SUUMOの賃貸](https://suumo.jp/chintai/kanto/)からエリ�
 
 スクレイピングした結果は/data/rental_information_list.csvに保存される。
 
-
 ### 2.Google Maps Geocoding APIで住所から緯度経度に変換 [address2latlon.py](https://github.com/kaiman2110/Kinju_search/blob/main/src/address2latlon.py)
+次にやることとして、住所の情報から緯度経度情報に変換をおこなう。  
+
+地図上の2点間の距離を求める際に緯度経度情報を取得する必要がある。  
+方法はいくつかあるが、国土地理院のAPIでは住所まででしか検索できず、
+
+そこで正確な位置情報が取得できないため、Google Maps Platform APIを利用する。  
+googlemaps.Clientの引数のkeyにはGCPのAPIキーをペースト。
+
+結果を/data/latitude_longitude.csvに保存する
+
 ### 3.会社とそれぞれの住宅との距離を計算 [calc_distance.py](https://github.com/kaiman2110/Kinju_search/blob/main/src/calc_distance.py)
+そして、取得した緯度経度と基準点となる建物(会社)の緯度経度の距離を計算する。  
+国土地理院の[計量計算サイト](https://vldb.gsi.go.jp/sokuchi/surveycalc/surveycalc/bl2stf.html)から求めることもできるが  
+今回はgeopyのgeodesicを利用する。
+
+距離情報を追加したDataFrameはdistance.csv、こちらで指定した範囲内の  
+住居は/data/housing_within_range.csvに保存される
+
+
 ### 4.○km圏内の賃貸情報をMAP上に表示する map.html(現在作成中)
 
+## 備考
+- Googleマップから緯度経度を取得する際、ピンの座標ではなく右クリックしたカーソルの座標が返されるようだ
+
+
 ## 参考文献
-[SUUMOの物件情報を自動取得（スクレイピング）したのでコードを解説する。](https://qiita.com/tomyu/items/a08d3180b7cbe63667c9)
+- [SUUMOの物件情報を自動取得（スクレイピング）したのでコードを解説する。](https://qiita.com/tomyu/items/a08d3180b7cbe63667c9)
+- [Pythonで地名/住所から緯度/経度を取得し地図にプロットする方法](https://qiita.com/daifuku10/items/0cd4a409417d3a7b7297)
+- [距離と方位角の計算](https://vldb.gsi.go.jp/sokuchi/surveycalc/surveycalc/bl2stf.html)
